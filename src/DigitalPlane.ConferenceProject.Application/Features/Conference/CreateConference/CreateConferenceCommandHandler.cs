@@ -27,6 +27,6 @@ public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCo
         }
         var conference = _mapper.Map<Domain.Entities.Conference>(request);
         conference = await _conferenceRepository.AddAsync(conference);
-        return Result.Success(conference!.Id);
+        return Result.Success(conference.Id);
     }
 }
