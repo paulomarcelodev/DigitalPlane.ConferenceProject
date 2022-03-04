@@ -6,7 +6,7 @@ using OperationResult;
 
 namespace DigitalPlane.ConferenceProject.Application.Features.Conference.CreateConference;
 
-public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCommand, Result<Guid>>
+public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCommand, Result<string>>
 {
     private readonly IMapper _mapper;
     private readonly IConferenceRepository _conferenceRepository;
@@ -17,16 +17,16 @@ public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCo
         _conferenceRepository = conferenceRepository;
     }
 
-    public async Task<Result<Guid>> Handle(CreateConferenceCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CreateConferenceCommand request, CancellationToken cancellationToken)
     {
         var validator = new CreateConferenceCommandValidator(_conferenceRepository);
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
         {
-            return Result.Error<Guid>(new ValidationException(validationResult));
+            return Result.Error<string>(new ValidationException(validationResult));
         }
         var conference = _mapper.Map<Domain.Entities.Conference>(request);
         conference = await _conferenceRepository.AddAsync(conference);
-        return Result.Success(conference.Id);
+        return Result.Success(conference.Id.ToString());
     }
 }

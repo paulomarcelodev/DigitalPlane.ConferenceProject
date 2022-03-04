@@ -1,27 +1,21 @@
+using DigitalPlane.ConferenceProject.Api.Abstractions;
 using DigitalPlane.ConferenceProject.Application.Features.Conference.CreateConference;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalPlane.ConferenceProject.Api.Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
-public class ConferencesController : ControllerBase
+public class ConferencesController : BaseController
 {
-    private readonly ISender _sender;
-    
-    public ConferencesController(ISender sender) => _sender = sender;
+    public ConferencesController(ISender sender) : base(sender)
+    {
+    }
     
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateConferenceCommand([FromBody] CreateConferenceCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _sender.Send(command, cancellationToken);
-        if (!result.IsSuccess)
-        {
-            return BadRequest(result);
-        }
-        return Ok(result); 
-    }
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public Task<IActionResult> CreateConferenceCommand([FromBody] CreateConferenceCommand command, CancellationToken cancellationToken) 
+        => SendCommand(command, cancellationToken);
 }

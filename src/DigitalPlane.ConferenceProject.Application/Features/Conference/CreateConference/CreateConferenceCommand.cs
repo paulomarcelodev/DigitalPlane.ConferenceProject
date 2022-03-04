@@ -3,7 +3,7 @@ using OperationResult;
 
 namespace DigitalPlane.ConferenceProject.Application.Features.Conference.CreateConference;
 
-public class CreateConferenceCommand : ICommand<Result<Guid>>
+public class CreateConferenceCommand : ICommand<Result<string>>
 {
     public string Name { get; set; }
     public string Description { get; set; }
