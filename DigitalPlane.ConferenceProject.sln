@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Core", "1 - Core", "{30
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalPlane.ConferenceProject.Domain", "src\DigitalPlane.ConferenceProject.Domain\DigitalPlane.ConferenceProject.Domain.csproj", "{D8E2D27C-4133-44D3-9567-6FF425310390}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalPlane.ConferenceProject.Application", "src\DigitalPlane.ConferenceProject.Application\DigitalPlane.ConferenceProject.Application.csproj", "{D8881B23-D653-45C2-BA57-B6850988897F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,11 +16,16 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{30CF8D26-D70B-44D5-890B-C052201816D3} = {77F9EA3E-F42F-4B4F-8529-32F4A5C813D2}
 		{D8E2D27C-4133-44D3-9567-6FF425310390} = {30CF8D26-D70B-44D5-890B-C052201816D3}
+		{D8881B23-D653-45C2-BA57-B6850988897F} = {30CF8D26-D70B-44D5-890B-C052201816D3}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D8E2D27C-4133-44D3-9567-6FF425310390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8E2D27C-4133-44D3-9567-6FF425310390}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8E2D27C-4133-44D3-9567-6FF425310390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8E2D27C-4133-44D3-9567-6FF425310390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8881B23-D653-45C2-BA57-B6850988897F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8881B23-D653-45C2-BA57-B6850988897F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8881B23-D653-45C2-BA57-B6850988897F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8881B23-D653-45C2-BA57-B6850988897F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

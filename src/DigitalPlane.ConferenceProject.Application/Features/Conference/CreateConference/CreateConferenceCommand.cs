@@ -1,8 +1,9 @@
-using DigitalPlane.ConferenceProject.Domain.Common;
+using DigitalPlane.ConferenceProject.Application.Abstractions.Messaging;
+using OperationResult;
 
-namespace DigitalPlane.ConferenceProject.Domain.Entities;
+namespace DigitalPlane.ConferenceProject.Application.Features.Conference.CreateConference;
 
-public class Conference : AuditableEntity
+public class CreateConferenceCommand : ICommand<Result<Guid>>
 {
     public string Name { get; set; }
     public string Description { get; set; }
