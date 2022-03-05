@@ -7,14 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DigitalPlane.ConferenceProject.Domain\DigitalPlane.ConferenceProject.Domain.csproj" />
+        <ProjectReference Include="..\DigitalPlane.ConferenceProject.Domain\DigitalPlane.ConferenceProject.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-      <PackageReference Include="Divino.OperationResult" Version="3.0.0" />
-      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.6" />
-      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
+        <PackageReference Include="Divino.OperationResult" Version="3.0.0"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.6"/>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Features\Proposals\ConferenceProfile.cs"/>
     </ItemGroup>
 
 </Project>
