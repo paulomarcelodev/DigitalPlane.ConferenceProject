@@ -1,12 +1,13 @@
 using AutoMapper;
 using DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
+using DigitalPlane.ConferenceProject.Domain.Entities;
 
 namespace DigitalPlane.ConferenceProject.Application.Features.Conferences;
 
-public class ConferenceProfile : Profile
+public class FeatureProfile : Profile
 {
-    public ConferenceProfile()
+    public FeatureProfile()
     {
-        CreateMap<CreateConferenceCommand, Domain.Entities.Conference>();
+        CreateMap<CreateConferenceCommand, Conference>();
     }
 }
