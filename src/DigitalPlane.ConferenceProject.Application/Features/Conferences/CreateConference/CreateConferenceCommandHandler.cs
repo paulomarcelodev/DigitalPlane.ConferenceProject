@@ -4,7 +4,7 @@ using DigitalPlane.ConferenceProject.Application.Contracts.Persistence;
 using DigitalPlane.ConferenceProject.Application.Exceptions;
 using OperationResult;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Conference.CreateConference;
+namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
 
 public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCommand, Result<string>>
 {

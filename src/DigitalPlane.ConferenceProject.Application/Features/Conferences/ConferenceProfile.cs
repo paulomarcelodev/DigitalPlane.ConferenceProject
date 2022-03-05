@@ -1,7 +1,7 @@
 using AutoMapper;
-using DigitalPlane.ConferenceProject.Application.Features.Conference.CreateConference;
+using DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Conference;
+namespace DigitalPlane.ConferenceProject.Application.Features.Conferences;
 
 public class ConferenceProfile : Profile
 {

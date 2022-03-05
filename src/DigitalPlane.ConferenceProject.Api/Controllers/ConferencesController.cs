@@ -1,5 +1,5 @@
 using DigitalPlane.ConferenceProject.Api.Abstractions;
-using DigitalPlane.ConferenceProject.Application.Features.Conference.CreateConference;
+using DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
