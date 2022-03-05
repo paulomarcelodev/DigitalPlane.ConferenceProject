@@ -41,8 +41,8 @@ public class CreateConferenceCommandValidator : AbstractValidator<CreateConferen
             .WithMessage("A conference with the same name and location already exists.");
     }
 
-    private async Task<bool> NameAndLocationUnique(CreateConferenceCommand c, CancellationToken token)
+    private Task<bool> NameAndLocationUnique(CreateConferenceCommand c, CancellationToken token)
     {
-        return !await _conferenceRepository.IsNameAndLocationUnique(c.Name, c.Location);
+        return _conferenceRepository.IsNameAndLocationUnique(c.Name, c.Location);
     }
 }

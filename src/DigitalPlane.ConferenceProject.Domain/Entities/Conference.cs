@@ -10,4 +10,7 @@ public class Conference : AuditableEntity
     public bool HasLimitOfAttendee { get; set; }
     public int? AttendeeLimit { get; set; }
     public DateTime Start { get; set; }
+
+    public bool IsOpenToProposals() =>
+        Start > DateTime.Now;
 }

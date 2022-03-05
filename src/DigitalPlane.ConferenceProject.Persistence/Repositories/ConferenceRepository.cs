@@ -12,6 +12,6 @@ public class ConferenceRepository : BaseRepository<Conference>, IConferenceRepos
     public Task<bool> IsNameAndLocationUnique(string name, string location)
     {
         var matches = _dbContext.Conferences!.Any(e => e.Name.Equals(name) && e.Location.Equals(location));
-        return Task.FromResult(matches);
+        return Task.FromResult(!matches);
     }
 }

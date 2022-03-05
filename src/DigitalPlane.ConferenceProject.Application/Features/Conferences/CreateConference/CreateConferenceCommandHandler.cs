@@ -2,6 +2,7 @@ using AutoMapper;
 using DigitalPlane.ConferenceProject.Application.Abstractions.Messaging;
 using DigitalPlane.ConferenceProject.Application.Contracts.Persistence;
 using DigitalPlane.ConferenceProject.Application.Exceptions;
+using DigitalPlane.ConferenceProject.Domain.Entities;
 using OperationResult;
 
 namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
@@ -25,8 +26,8 @@ public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCo
         {
             return Result.Error<string>(new ValidationException(validationResult));
         }
-        var conference = _mapper.Map<Domain.Entities.Conference>(request);
-        conference = await _conferenceRepository.AddAsync(conference);
-        return Result.Success(conference.Id.ToString());
+        var newEntity = _mapper.Map<Conference>(request);
+        newEntity = await _conferenceRepository.AddAsync(newEntity);
+        return Result.Success(newEntity.Id.ToString());
     }
 }
