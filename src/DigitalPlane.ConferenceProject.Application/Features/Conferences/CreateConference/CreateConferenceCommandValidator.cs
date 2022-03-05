@@ -20,11 +20,13 @@ public class CreateConferenceCommandValidator : AbstractValidator<CreateConferen
 
         RuleFor(p => p.Description)
             .NotNull().NotEmpty().WithMessage("{PropertyName} is required.")
-            .MaximumLength(DescriptionLength).WithMessage("{PropertyName} must not exceed " + DescriptionLength + " characters.");
+            .MaximumLength(DescriptionLength)
+            .WithMessage("{PropertyName} must not exceed " + DescriptionLength + " characters.");
 
         RuleFor(p => p.Location)
             .NotNull().NotEmpty().WithMessage("{PropertyName} is required.")
-            .MaximumLength(LocationLength).WithMessage("{PropertyName} must not exceed " + LocationLength + " characters.");
+            .MaximumLength(LocationLength)
+            .WithMessage("{PropertyName} must not exceed " + LocationLength + " characters.");
 
         RuleFor(p => p.Start)
             .GreaterThan(DateTime.Now).WithMessage("{PropertyName} must be a future date.");
@@ -43,6 +45,6 @@ public class CreateConferenceCommandValidator : AbstractValidator<CreateConferen
 
     private Task<bool> NameAndLocationUnique(CreateConferenceCommand c, CancellationToken token)
     {
-        return _conferenceRepository.IsNameAndLocationUnique(c.Name, c.Location);
+        return _conferenceRepository.IsNameAndLocationUnique(c.Name!, c.Location!);
     }
 }

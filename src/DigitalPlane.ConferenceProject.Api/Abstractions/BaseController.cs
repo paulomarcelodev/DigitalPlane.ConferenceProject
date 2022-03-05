@@ -10,22 +10,26 @@ namespace DigitalPlane.ConferenceProject.Api.Abstractions;
 public abstract class BaseController : ControllerBase
 {
     private readonly ISender _sender;
-    
+
     protected BaseController(ISender sender) => _sender = sender;
-    
-    public async Task<IActionResult> SendCommand(ICommand<Result> command, CancellationToken token) => 
-        HandlerResult(await _sender.Send(command, token));
 
-    public async Task<IActionResult> SendCommand(ICommand<Result<string>> command, CancellationToken token) =>
-        HandlerResult(await _sender.Send(command, token));
+    protected async Task<IActionResult> SendCommand(ICommand<Result> command, CancellationToken token)
+    {
+        return HandlerResult(await _sender.Send(command, token));
+    }
 
-    private IActionResult HandlerResult(Result result)=>
+    protected async Task<IActionResult> SendCommand(ICommand<Result<string>> command, CancellationToken token)
+    {
+        return HandlerResult(await _sender.Send(command, token));
+    }
+
+    private IActionResult HandlerResult(Result result) =>
         result.IsSuccess ? HandlerResultSuccess(result) : HandlerFailResult(result.Exception);
 
     private IActionResult HandlerResult(Result<string> result) =>
         result.IsSuccess ? HandlerResultSuccess(result) : HandlerFailResult(result.Exception);
-    
-    private IActionResult HandlerResultSuccess(Result result) => 
+
+    private IActionResult HandlerResultSuccess(Result result) =>
         Ok(new GenericResponse(result));
 
     private IActionResult HandlerResultSuccess(Result<string> result) =>
@@ -37,5 +41,4 @@ public abstract class BaseController : ControllerBase
             ValidationException e => BadRequest(new ErrorResponse(e.ValidationErrors)),
             _ => StatusCode(500)
         };
-
 }

@@ -11,11 +11,11 @@ public class ConferenceConfiguration : IEntityTypeConfiguration<Conference>
         builder.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(50);
-        
+
         builder.Property(e => e.Description)
             .IsRequired()
             .HasMaxLength(255);
-        
+
         builder.Property(e => e.Location)
             .IsRequired()
             .HasMaxLength(50);
@@ -25,6 +25,10 @@ public class ConferenceConfiguration : IEntityTypeConfiguration<Conference>
 
         builder.Property(e => e.Start)
             .IsRequired();
+
+        builder
+            .HasMany(c => c.Proposals)
+            .WithOne(e => e.Conference);
 
         builder.HasIndex(e => e.Name);
     }

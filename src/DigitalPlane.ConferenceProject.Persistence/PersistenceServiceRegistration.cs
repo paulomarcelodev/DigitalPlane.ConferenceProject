@@ -14,15 +14,16 @@ public static class PersistenceServiceRegistration
             .AddDatabase(configuration, connectionStringSection, migrationAssemblyName)
             .AddRepositories();
 
-    private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration, 
+    private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration,
         string connectionStringSection, string migrationAssemblyName) =>
         services.AddDbContext<ConferenceProjectDbContext>(options =>
             options.UseSqlServer(
                 configuration.GetConnectionString(connectionStringSection),
                 b => b.MigrationsAssembly(migrationAssemblyName)));
 
-    private static IServiceCollection AddRepositories(this IServiceCollection services) => 
+    private static IServiceCollection AddRepositories(this IServiceCollection services) =>
         services
             .AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>))
-            .AddScoped<IConferenceRepository, ConferenceRepository>();
+            .AddScoped<IConferenceRepository, ConferenceRepository>()
+            .AddScoped<IProposalRepository, ProposalRepository>();
 }

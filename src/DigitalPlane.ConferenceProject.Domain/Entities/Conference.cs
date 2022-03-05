@@ -11,6 +11,8 @@ public class Conference : AuditableEntity
     public int? AttendeeLimit { get; set; }
     public DateTime Start { get; set; }
 
+    public List<Proposal>? Proposals { get; set; }
+
     public bool IsOpenToProposals() =>
         Start > DateTime.Now;
 }

@@ -3,20 +3,22 @@ using DigitalPlane.ConferenceProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalPlane.ConferenceProject.Persistence;
+
 public class ConferenceProjectDbContext : DbContext
 {
     public ConferenceProjectDbContext(DbContextOptions<ConferenceProjectDbContext> options)
-       : base(options)
+        : base(options)
     {
     }
 
     public DbSet<Conference>? Conferences { get; set; }
+    public DbSet<Proposal>? Proposals { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ConferenceProjectDbContext).Assembly);
     }
-    
+
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
@@ -31,7 +33,7 @@ public class ConferenceProjectDbContext : DbContext
                     break;
             }
         }
+
         return base.SaveChangesAsync(cancellationToken);
     }
 }
-	

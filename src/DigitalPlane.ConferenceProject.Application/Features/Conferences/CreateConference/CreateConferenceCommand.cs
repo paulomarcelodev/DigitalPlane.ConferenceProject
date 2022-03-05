@@ -5,9 +5,9 @@ namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.Create
 
 public class CreateConferenceCommand : ICommand<Result<string>>
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public string Location { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public string? Location { get; set; }
     public bool HasLimitOfAttendee { get; set; }
     public int? AttendeeLimit { get; set; }
     public DateTime Start { get; set; }
