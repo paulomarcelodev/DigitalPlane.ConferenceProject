@@ -5,12 +5,12 @@ using DigitalPlane.ConferenceProject.Application.Exceptions;
 using DigitalPlane.ConferenceProject.Domain.Entities;
 using OperationResult;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
+namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.Commands.CreateConference;
 
 public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCommand, Result<string>>
 {
-    private readonly IMapper _mapper;
     private readonly IConferenceRepository _conferenceRepository;
+    private readonly IMapper _mapper;
 
     public CreateConferenceCommandHandler(IMapper mapper, IConferenceRepository conferenceRepository)
     {
@@ -26,6 +26,7 @@ public class CreateConferenceCommandHandler : ICommandHandler<CreateConferenceCo
         {
             return Result.Error<string>(new ValidationException(validationResult));
         }
+
         var newEntity = _mapper.Map<Conference>(request);
         newEntity = await _conferenceRepository.AddAsync(newEntity);
         return Result.Success(newEntity.Id.ToString());

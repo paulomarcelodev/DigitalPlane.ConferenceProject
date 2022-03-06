@@ -23,4 +23,9 @@
         <Compile Remove="Exceptions\NotFoundException.cs"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="Features\Conferences\Commands"/>
+        <Folder Include="Features\Proposals\Commands"/>
+    </ItemGroup>
+
 </Project>

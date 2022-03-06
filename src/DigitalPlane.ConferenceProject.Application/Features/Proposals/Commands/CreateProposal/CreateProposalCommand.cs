@@ -1,7 +1,7 @@
 using DigitalPlane.ConferenceProject.Application.Abstractions.Messaging;
 using OperationResult;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Proposals.CreateProposal;
+namespace DigitalPlane.ConferenceProject.Application.Features.Proposals.Commands.CreateProposal;
 
 public class CreateProposalCommand : ICommand<Result<string>>
 {

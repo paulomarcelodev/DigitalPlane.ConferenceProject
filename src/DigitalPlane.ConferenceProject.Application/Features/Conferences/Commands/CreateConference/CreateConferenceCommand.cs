@@ -1,7 +1,7 @@
 using DigitalPlane.ConferenceProject.Application.Abstractions.Messaging;
 using OperationResult;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
+namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.Commands.CreateConference;
 
 public class CreateConferenceCommand : ICommand<Result<string>>
 {

@@ -5,16 +5,16 @@ using DigitalPlane.ConferenceProject.Application.Exceptions;
 using DigitalPlane.ConferenceProject.Domain.Entities;
 using OperationResult;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Proposals.CreateProposal;
-
+namespace DigitalPlane.ConferenceProject.Application.Features.Proposals.Commands.CreateProposal;
 
 public class CreateProposalCommandHandler : ICommandHandler<CreateProposalCommand, Result<string>>
 {
+    private readonly IConferenceRepository _conferenceRepository;
     private readonly IMapper _mapper;
     private readonly IProposalRepository _proposalRepository;
-    private readonly IConferenceRepository _conferenceRepository;
 
-    public CreateProposalCommandHandler(IMapper mapper, IProposalRepository proposalRepository, IConferenceRepository conferenceRepository)
+    public CreateProposalCommandHandler(IMapper mapper, IProposalRepository proposalRepository,
+        IConferenceRepository conferenceRepository)
     {
         _mapper = mapper;
         _proposalRepository = proposalRepository;
@@ -29,6 +29,7 @@ public class CreateProposalCommandHandler : ICommandHandler<CreateProposalComman
         {
             return Result.Error<string>(new ValidationException(validationResult));
         }
+
         var newEntity = _mapper.Map<Proposal>(request);
         newEntity = await _proposalRepository.AddAsync(newEntity);
         return Result.Success(newEntity.Id.ToString());

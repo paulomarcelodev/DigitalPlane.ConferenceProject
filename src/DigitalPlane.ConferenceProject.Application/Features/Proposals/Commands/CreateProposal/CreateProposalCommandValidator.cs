@@ -1,7 +1,7 @@
 using DigitalPlane.ConferenceProject.Application.Contracts.Persistence;
 using FluentValidation;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Proposals.CreateProposal;
+namespace DigitalPlane.ConferenceProject.Application.Features.Proposals.Commands.CreateProposal;
 
 public class CreateProposalCommandValidator : AbstractValidator<CreateProposalCommand>
 {

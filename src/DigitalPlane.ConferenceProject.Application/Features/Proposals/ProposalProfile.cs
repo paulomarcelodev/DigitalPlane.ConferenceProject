@@ -1,12 +1,12 @@
 using AutoMapper;
-using DigitalPlane.ConferenceProject.Application.Features.Proposals.CreateProposal;
+using DigitalPlane.ConferenceProject.Application.Features.Proposals.Commands.CreateProposal;
 using DigitalPlane.ConferenceProject.Domain.Entities;
 
 namespace DigitalPlane.ConferenceProject.Application.Features.Proposals;
 
-public class FeatureProfile : Profile
+public class ProposalProfile : Profile
 {
-    public FeatureProfile()
+    public ProposalProfile()
     {
         CreateMap<CreateProposalCommand, Proposal>();
     }

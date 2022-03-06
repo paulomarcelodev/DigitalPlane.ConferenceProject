@@ -1,7 +1,7 @@
 using DigitalPlane.ConferenceProject.Application.Contracts.Persistence;
 using FluentValidation;
 
-namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.CreateConference;
+namespace DigitalPlane.ConferenceProject.Application.Features.Conferences.Commands.CreateConference;
 
 public class CreateConferenceCommandValidator : AbstractValidator<CreateConferenceCommand>
 {
