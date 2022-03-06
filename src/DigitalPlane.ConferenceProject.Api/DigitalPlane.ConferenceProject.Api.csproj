@@ -9,14 +9,39 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2">
           <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DigitalPlane.ConferenceProject.Application\DigitalPlane.ConferenceProject.Application.csproj" />
-      <ProjectReference Include="..\DigitalPlane.ConferenceProject.Persistence\DigitalPlane.ConferenceProject.Persistence.csproj" />
+        <ProjectReference Include="..\DigitalPlane.ConferenceProject.Application\DigitalPlane.ConferenceProject.Application.csproj"/>
+        <ProjectReference Include="..\DigitalPlane.ConferenceProject.Persistence\DigitalPlane.ConferenceProject.Persistence.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Requests\ConferencesController\**"/>
+        <Compile Remove="Requests\ProposalsController\**"/>
+        <Compile Remove="Requests\IRequest.cs"/>
+        <Compile Remove="Requests\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="Requests\ConferencesController\**"/>
+        <EmbeddedResource Remove="Requests\ProposalsController\**"/>
+        <EmbeddedResource Remove="Requests\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Requests\ConferencesController\**"/>
+        <None Remove="Requests\ProposalsController\**"/>
+        <None Remove="Requests\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Remove="Requests\ConferencesController\**"/>
+        <Content Remove="Requests\ProposalsController\**"/>
+        <Content Remove="Requests\**"/>
     </ItemGroup>
 
 </Project>

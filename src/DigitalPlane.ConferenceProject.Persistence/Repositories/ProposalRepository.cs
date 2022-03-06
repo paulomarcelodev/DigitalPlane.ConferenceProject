@@ -1,5 +1,6 @@
 using DigitalPlane.ConferenceProject.Application.Contracts.Persistence;
 using DigitalPlane.ConferenceProject.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalPlane.ConferenceProject.Persistence.Repositories;
 
@@ -9,12 +10,9 @@ public class ProposalRepository : BaseRepository<Proposal>, IProposalRepository
     {
     }
 
-    public Task<bool> IsUnique(Guid conferenceId, string title, string speaker)
+    public async Task<bool> IsUnique(Guid conferenceId, string title, string speaker)
     {
-        return Task.FromResult(!_dbContext.Proposals!.Any(e =>
-            e.Speaker != null && e.Title != null &&
-            e.ConferenceId != conferenceId && e.Title.Equals(title) &&
-            e.Speaker.Equals(speaker))
-        );
+        return (await _dbContext.Proposals?.FirstOrDefaultAsync(p =>
+            p.ConferenceId == conferenceId && p.Title == title && p.Speaker == speaker)! ?? null) is null;
     }
 }
