@@ -1,4 +1,4 @@
-using DigitalPlane.ConferenceProject.Application.Abstractions.Messaging;
+using DigitalPlane.ConferenceProject.Application.Abstractions;
 using DigitalPlane.ConferenceProject.Application.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -9,28 +9,19 @@ namespace DigitalPlane.ConferenceProject.Api.Abstractions;
 [ApiController]
 public abstract class BaseController : ControllerBase
 {
-    private readonly ISender _sender;
+    protected readonly ISender _sender;
 
     protected BaseController(ISender sender) => _sender = sender;
 
-    protected async Task<IActionResult> SendCommand(ICommand<Result> command, CancellationToken token)
+    protected IActionResult HandlerResult(Result<string> result)
     {
-        return HandlerResult(await _sender.Send(command, token));
+        return result.IsSuccess ? HandlerResultSuccess(result) : HandlerFailResult(result.Exception);
     }
 
-    protected async Task<IActionResult> SendCommand(ICommand<Result<string>> command, CancellationToken token)
+    protected IActionResult HandlerResult<TViewModel>(Result<TViewModel> result) where TViewModel : IViewModel
     {
-        return HandlerResult(await _sender.Send(command, token));
+        return Ok(new GenericResponse(result.Value!));
     }
-
-    private IActionResult HandlerResult(Result result) =>
-        result.IsSuccess ? HandlerResultSuccess(result) : HandlerFailResult(result.Exception);
-
-    private IActionResult HandlerResult(Result<string> result) =>
-        result.IsSuccess ? HandlerResultSuccess(result) : HandlerFailResult(result.Exception);
-
-    private IActionResult HandlerResultSuccess(Result result) =>
-        Ok(new GenericResponse(result));
 
     private IActionResult HandlerResultSuccess(Result<string> result) =>
         StatusCode(201, new CreateResponse(result.Value!));
@@ -39,6 +30,7 @@ public abstract class BaseController : ControllerBase
         exception switch
         {
             ValidationException e => BadRequest(new ErrorResponse(e.ValidationErrors)),
+            NotFoundException e => BadRequest(new ErrorResponse(new List<string> { e.Message })),
             _ => StatusCode(500)
         };
 }

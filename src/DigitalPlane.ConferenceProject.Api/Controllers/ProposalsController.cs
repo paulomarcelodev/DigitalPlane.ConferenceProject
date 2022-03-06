@@ -16,9 +16,9 @@ public class ProposalsController : BaseController
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public Task<IActionResult> CreateProposalCommand([FromBody] CreateProposalCommand command,
+    public async Task<IActionResult> CreateProposalCommand([FromBody] CreateProposalCommand command,
         CancellationToken cancellationToken)
     {
-        return SendCommand(command, cancellationToken);
+        return HandlerResult(await _sender.Send(command, cancellationToken));
     }
 }

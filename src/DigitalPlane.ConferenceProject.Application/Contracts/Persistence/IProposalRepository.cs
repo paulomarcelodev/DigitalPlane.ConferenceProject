@@ -5,4 +5,5 @@ namespace DigitalPlane.ConferenceProject.Application.Contracts.Persistence;
 public interface IProposalRepository : IAsyncRepository<Proposal>
 {
     Task<bool> IsUnique(Guid conferenceId, string title, string speaker);
+    Task<List<Proposal>>? ListByConferenceId(Guid conferenceId);
 }

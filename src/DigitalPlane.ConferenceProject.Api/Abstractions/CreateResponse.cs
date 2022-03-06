@@ -1,3 +1,5 @@
+using DigitalPlane.ConferenceProject.Application.Abstractions;
+
 namespace DigitalPlane.ConferenceProject.Api.Abstractions;
 
 public class CreateResponse : BaseResponse
@@ -12,10 +14,10 @@ public class CreateResponse : BaseResponse
 
 public class GenericResponse : BaseResponse
 {
-    public GenericResponse(object obj)
+    public GenericResponse(IViewModel viewModel)
     {
-        Data = obj;
+        Data = viewModel;
     }
 
-    public object Data { get; }
+    public IViewModel Data { get; }
 }

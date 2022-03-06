@@ -1,5 +1,6 @@
 using DigitalPlane.ConferenceProject.Api.Abstractions;
 using DigitalPlane.ConferenceProject.Application.Features.Conferences.Commands.CreateConference;
+using DigitalPlane.ConferenceProject.Application.Features.Conferences.Queries.GetConferenceDetailById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,20 @@ public class ConferencesController : BaseController
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public Task<IActionResult> CreateConferenceCommand([FromBody] CreateConferenceCommand command,
+    public async Task<IActionResult> CreateConferenceCommand([FromBody] CreateConferenceCommand command,
         CancellationToken cancellationToken)
-        => SendCommand(command, cancellationToken);
+    {
+        return HandlerResult(await _sender.Send(command, cancellationToken));
+    }
+
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetConferenceDetailByIdQuery([FromRoute] Guid id,
+        CancellationToken cancellationToken)
+    {
+        return HandlerResult(await _sender.Send(new GetConferenceDetailByIdQuery { Id = id }, cancellationToken));
+    }
 }

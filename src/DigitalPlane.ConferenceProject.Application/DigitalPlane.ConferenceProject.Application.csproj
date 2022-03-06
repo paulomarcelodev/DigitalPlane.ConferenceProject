@@ -20,7 +20,6 @@
     <ItemGroup>
         <Compile Remove="Features\Proposals\ConferenceProfile.cs"/>
         <Compile Remove="Exceptions\BadRequestException.cs"/>
-        <Compile Remove="Exceptions\NotFoundException.cs"/>
     </ItemGroup>
 
     <ItemGroup>

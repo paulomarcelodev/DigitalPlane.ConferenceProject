@@ -15,4 +15,14 @@ public class ProposalRepository : BaseRepository<Proposal>, IProposalRepository
         return (await _dbContext.Proposals?.FirstOrDefaultAsync(p =>
             p.ConferenceId == conferenceId && p.Title == title && p.Speaker == speaker)! ?? null) is null;
     }
+
+    public Task<List<Proposal>>? ListByConferenceId(Guid conferenceId)
+    {
+        return _dbContext.Proposals?
+            .AsNoTracking()
+            .Where(e => e.ConferenceId == conferenceId)
+            .OrderBy(e => e.Approved)
+            .ThenBy(e => e.Title)
+            .ToListAsync();
+    }
 }
